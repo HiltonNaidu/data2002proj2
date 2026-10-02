@@ -1,0 +1,131 @@
+---
+title: "Project 2 DATA2002"
+date: "`r Sys.Date()`"
+author: "550770402"
+format: 
+  html: 
+    embed-resources: true # Creates a single HTML file as output
+    code-fold: true # Code folding; allows you to show/hide code chunks
+    code-tools: true # Includes a menu to download the code file
+    theme: lux
+    # code-tools are particularly important if you use inline R to 
+    # improve the reproducibility of your report
+execute: 
+  warning: false
+  message: false
+  echo: True
+table-of-contents: true # (Optional) Creates a table of contents
+number-sections: true # (Optional) Puts numbers next to heading/subheadings
+---
+
+## Abstract
+
+## Introduction
+
+## Dataset
+
+```{r}
+# IMPORTS
+library(ggplot2)
+```
+
+| Variable | Type   | Description                      |
+|----------|--------|----------------------------------|
+| 1        | Input  | Fixed acidity                    |
+| 2        | Input  | Volatile acidity                 |
+| 3        | Input  | Citric acid                      |
+| 4        | Input  | Residual sugar                   |
+| 5        | Input  | Chlorides                        |
+| 6        | Input  | Free sulfur dioxide              |
+| 7        | Input  | Total sulfur dioxide             |
+| 8        | Input  | Density                          |
+| 9        | Input  | pH                               |
+| 10       | Input  | Sulphates                        |
+| 11       | Input  | Alcohol                          |
+| 12       | Output | Quality (score between 0 and 10) |
+
+Missing Attribute Values: None <https://archive.ics.uci.edu/dataset/186/wine+quality>
+
+```{r}
+# RED WINE 
+RED <- read.csv2("winequality-red.csv")
+
+# Red wine quality graph 
+ggplot(RED, aes(x = factor(quality))) +
+  geom_bar() +
+  labs(
+    title = "Red Wine Quality",
+    x = "Quality score",
+    y = "Number of wines"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+# WHITE WINE 
+WHITE <- read.csv2("winequality-white.csv")
+
+# White wine quality graph 
+ggplot(WHITE, aes(x = factor(quality))) +
+  geom_bar() +
+  labs(
+    title = "White Wine Quality",
+    x = "Quality score",
+    y = "Number of wines"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+# Dataset sizes
+cat("Red wine:", nrow(RED), "rows x", ncol(RED), "columns\n")
+cat("White wine:", nrow(WHITE), "rows x", ncol(WHITE), "columns\n")
+```
+
+## Analysis
+
+### Model Selection
+
+When developing the model to use, I first had to determine the independence of attributes of the wine. This involved grouping some parameters into categories to assess their potential relation, those being:
+
+- Acidity (Fixed Acidity, Volatile acidity, Citric acid)\
+  Fixed acidity are a set of acids in wine which do not evaporate at normal temperatures, and are often contrasted with Volatile acids, which are a wine's gaseous acids. These are mutually exclusive options for acids, and therefore it is valuable to include both in a linear model.
+
+- Sulphates (Free sulfur dioxide, Total sulfur dioxide)\
+  dvbhjdf\
+  efsbjkdfv\
+  dvfklnjdf
+
+- Fermentation (Residual sugar, Alcohol) \
+  svdjdfv\
+  svdjkvd\
+  dvjkndfjk
+
+### Model Evaluation
+
+### Assumptions
+
+## Findings
+
+## Conclusions
+
+## Acknowledgements
+
+<https://winefolly.com/deep-dive/what-is-residual-sugar-in-wine/>
+
+<https://winefolly.com/deep-dive/sulfites-in-wine/>
+
+<https://www.laithwaites.com.au/blog/wine-knowledge/what-are-sulphites-in-wine?srsltid=AU7gw4V7stof4SfbOUvMWdx4ULW-JOi90X2Y10K2BZ43BTuilEW5OkNQ>
+
+<https://www.extension.iastate.edu/wine/total-sulfur-dioxide-why-it-matters-too>
+
+<https://extension.okstate.edu/fact-sheets/understanding-free-sulfur-dioxide-fso2-in-wine>
+
+<https://allen.in/science/citric-acid>
+
+<https://www.wineenthusiast.com/basics/drinks-terms-defined/volatile-acidity-wine/?srsltid=AU7gw4WLNjSRE_L8EV5xUtPLNiQOfeHsq6PGgl7BJQRdxK4-F4NxreI2>
+
+<https://familiamorgan.com/learn/glossary/fixed-acidity/?srsltid=AU7gw4UXMx3POoBA8MtxK5lc3ZS53_a0dGRl4YQsJJi2-3TC6bBni4q4>
+
+P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553. ISSN: 0167-9236.
